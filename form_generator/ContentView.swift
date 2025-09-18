@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isShowingDatabaseConnection = false
+    
+     private func showDataBaseConnection() {
+        isShowingDatabaseConnection = true
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            VStack () {
+                Button(action: showDataBaseConnection) {
+                    Text("Connect to database")
+                }
+            }
+            .padding()
+            .navigationTitle("Form Generator")
+            .sheet(isPresented: $isShowingDatabaseConnection) {
+                DataBaseInfo()
+            }
         }
-        .padding()
     }
 }
 
